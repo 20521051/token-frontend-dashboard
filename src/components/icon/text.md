@@ -1,0 +1,1 @@
+các icon dưới dạng component
