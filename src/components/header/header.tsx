@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { shortenAddress, shortenBalance } from '../../../utils/shortenAddress';
+import { shortenAddress, shortenBalance } from '@/utils/shortenAddress';
 
 function Header() {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
