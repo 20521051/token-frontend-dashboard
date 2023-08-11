@@ -6,6 +6,7 @@ interface TransferProps {
 }
 
 function Transfer({ ...props }: TransferProps) {
+  const [isLogin] = useState<boolean>(false);
   const [isBuy, setIsBuy] = useState<boolean>(true);
   const [balance, setBalance] = useState<number>(props.balance || 10000);
   const handleChooseBuy = () => {
@@ -21,7 +22,7 @@ function Transfer({ ...props }: TransferProps) {
     setBalance(balance);
   };
   return (
-    <div className='bg-[#141828] w-[280px] h-[360px] px-[15px] py-[20px] flex flex-col justify-between items-center'>
+    <div className='bg-[#141828] w-[280px] h-[360px] px-[15px] py-[20px] flex flex-col justify-between items-center border-[2px] border-black border-solid'>
       <div className='bg-[#222940] rounded-[8px] p-[5px] w-[240px] flex justify-between font-[30px] text-[16px]'>
         <button
           className={clsx('w-[110px] h-[35px] rounded-[5px]', {
@@ -68,6 +69,7 @@ function Transfer({ ...props }: TransferProps) {
           <button
             className='w-[240px] h-[35px] rounded-[5px] mt-2 text-[#449f73] bg-[#283e49]'
             onClick={handleClickBuy}
+            disabled={!isLogin}
           >
             Mua
           </button>
@@ -75,6 +77,7 @@ function Transfer({ ...props }: TransferProps) {
           <button
             className='w-[240px] h-[35px] rounded-[5px] mt-2 text-[#d44e67] bg-[#3d2f45]'
             onClick={handleClickSell}
+            disabled={!isLogin}
           >
             Bán
           </button>
