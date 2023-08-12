@@ -25,7 +25,7 @@ const CoinTable: React.FC<CoinTableProps> = ({ data, latestPriceData }) => {
           </div>
         </div>
       </div>
-      <div className= 'mt-2'>
+      <div className='mt-2'>
         <div className='p-3 justify-center flex text-[#ffffff] border-b-[2px] border-white border-solid border-t-[2px]'>
           giá gần nhất
         </div>
