@@ -23,25 +23,38 @@ const CombinedChartComponent: React.FC = () => {
   }, [data]);
 
   return (
-    <div className="coin-market-chart p-4 bg-gray-900 rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold mb-2 text-white">Coin Market Price</h2>
-      <div className="w-full h-40">
-        <ResponsiveContainer width="100%" height="100%">
+    <div className='w-[920px] p-4 bg-[#141828] border-[2px] border-black border-solid'>
+      <h2 className='text-xl font-semibold mb-2 text-white'>Coin Market Price</h2>
+      <div className='w-full h-40'>
+        <ResponsiveContainer width='100%' height='100%'>
           <ComposedChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} strokeOpacity={0.2} />
-            <XAxis dataKey="name" tickFormatter={(value) => (value as Date).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })} />
-            <YAxis yAxisId="left" domain={['auto', 'auto']} hide />
+            <CartesianGrid strokeDasharray='3 3' vertical={false} strokeOpacity={0.2} />
+            <XAxis
+              dataKey='name'
+              tickFormatter={(value) =>
+                (value as Date).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })
+              }
+            />
+            <YAxis yAxisId='left' domain={['auto', 'auto']} hide />
             <YAxis
-              yAxisId="right"
-              orientation="right"
+              yAxisId='right'
+              orientation='right'
               domain={[167, 175]}
               label={{ value: 'Trading Value', angle: -90, position: 'insideRight' }}
               tickFormatter={(value) => value.toFixed(2)}
             />
             <Tooltip />
-            <Legend verticalAlign="top" height={36} />
-            <Area type="monotone" dataKey="marketPrice" stroke="#113962" fill="#113962" fillOpacity={0.6} yAxisId="left" animationDuration={500} />
-            <Bar dataKey="tokenVNSePrice" barSize={10} fill="#14406E" yAxisId="right" animationDuration={500} />
+            <Legend verticalAlign='top' height={36} />
+            <Area
+              type='monotone'
+              dataKey='marketPrice'
+              stroke='#113962'
+              fill='#113962'
+              fillOpacity={0.6}
+              yAxisId='left'
+              animationDuration={500}
+            />
+            <Bar dataKey='tokenVNSePrice' barSize={10} fill='#14406E' yAxisId='right' animationDuration={500} />
           </ComposedChart>
         </ResponsiveContainer>
       </div>

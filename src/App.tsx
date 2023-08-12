@@ -1,11 +1,13 @@
 import { Chart, Filter, Header, Info, TradingMarket, Transfer } from './components';
+import CoinTable from './components/historyCost';
 import { VNSeProvider } from './context/VNSeContext';
+import { fakeData, latestPriceData } from './utils/fakeData';
 
 function App() {
   /* vì chỉ có một trang nên dùng App làm home page */
   return (
     <VNSeProvider>
-      <>
+      <div className='bg-[#141828]'>
         <Header />
         <div className='flex'>
           <div>
@@ -13,12 +15,13 @@ function App() {
             <Filter />
             <Chart />
           </div>
+          <CoinTable data={fakeData} latestPriceData={latestPriceData} />
           <div>
             <Transfer balance={1000} />
             <TradingMarket />
           </div>
         </div>
-      </>
+      </div>
     </VNSeProvider>
   );
 }
