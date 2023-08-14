@@ -1,10 +1,11 @@
 import { createContext, ReactNode, useState } from 'react';
+import { ethers } from 'ethers';
 
 declare let window: any;
+
 interface VNSeContextData {
   checkIfWalletIsConnect: () => void;
   connectWallet: () => void;
-  // getBalance: () => void;
   currentAccount: string | null;
   balance: string | null;
 }
@@ -12,6 +13,7 @@ interface VNSeContextData {
 export const VNSeContext = createContext<VNSeContextData | undefined>(undefined);
 
 export const VNSeProvider = ({ children }: { children: ReactNode }) => {
+  const provider = new ethers.BrowserProvider(window.ethereum);
   const [currentAccount, setCurrentAccount] = useState<string | null>(null);
   const [balance, setBalance] = useState<string | null>(null);
 
@@ -23,14 +25,12 @@ export const VNSeProvider = ({ children }: { children: ReactNode }) => {
 
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
-        const balanceWei = await window.ethereum.getBalance(currentAccount);
-        const balanceEther = window.ethereum.utils.fromWei(balanceWei, 'ether');
+        const balanceWei = await provider.getBalance(accounts[0]);
+        const balanceEther = ethers.formatEther(balanceWei);
         setBalance(balanceEther);
       } else {
         console.log('No accounts found');
       }
-      console.log(currentAccount);
-      console.log(balance);
     } catch (error) {
       console.log(error);
     }
@@ -43,20 +43,18 @@ export const VNSeProvider = ({ children }: { children: ReactNode }) => {
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
 
       setCurrentAccount(accounts[0]);
-      const balanceWei = await window.ethereum.getBalance(currentAccount);
-      const balanceEther = window.ethereum.utils.fromWei(balanceWei, 'ether');
+      const balanceWei = await provider.getBalance(accounts[0]);
+      const balanceEther = ethers.formatEther(balanceWei);
       setBalance(balanceEther);
-      console.log(currentAccount);
-      console.log(balance);
     } catch (error) {
       console.log(error);
+      throw new Error('No ethereum object');
     }
   };
 
   const contextValue: VNSeContextData = {
     checkIfWalletIsConnect,
     connectWallet,
-    // getBalance,
     currentAccount,
     balance,
   };

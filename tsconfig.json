@@ -6,6 +6,8 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
+    "types": ["ethers" , "node"],
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -17,6 +19,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
+
 
     /* Linting */
     "strict": true,

@@ -24,7 +24,8 @@ const CombinedChartComponent: React.FC = () => {
 
   return (
     <div className='w-[920px] p-4 bg-[#141828] border-[1px] border-black border-solid'>
-      <h2 className='text-xl font-semibold mb-2 text-white'>Coin Market Price</h2>
+      <h2 className='text-lg font-semibold mb-1 text-white'>Coin Market Price</h2>
+
       <div className='w-full h-40'>
         <ResponsiveContainer width='100%' height='100%'>
           <ComposedChart data={data}>

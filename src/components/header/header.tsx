@@ -3,8 +3,6 @@ import { shortenAddress, shortenBalance } from '@/utils/shortenAddress';
 import { VNSeContext } from '@/context/VNSeContext';
 
 function Header() {
-  // const [balance] = useState<string>('1.01022121212121');
-
   const context = useContext(VNSeContext);
   if (!context) {
     console.log(context);
@@ -48,7 +46,7 @@ function Header() {
                       src='https://previews.123rf.com/images/mingirov/mingirov1902/mingirov190200850/118483237-cryptocurrency-coin-ethereum-eth-icon-isolated-on-transparent-background-physical-bit-coin-digital.jpg'
                       className=' h-5 w-5 flex mr-2'
                     />
-                    {balance ? shortenBalance(balance) : ''} ETH
+                    {balance ? shortenBalance(balance) : ' '} ETH
                   </div>
                   <div className='p-2 text-[#c9d9e0] flex items-center'>
                     <img
