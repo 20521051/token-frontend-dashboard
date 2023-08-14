@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { shortenAddress, shortenBalance } from '@/utils/shortenAddress';
 import { VNSeContext } from '@/context/VNSeContext';
 
@@ -9,8 +9,6 @@ function Header() {
     return null;
   }
   const { connectWallet, currentAccount, balance } = context;
-  console.log('>>>>>>>>>>>>', balance);
-  console.log("######",currentAccount);
 
   return (
     <div className='border-b-[1px] border-black border-solid'>

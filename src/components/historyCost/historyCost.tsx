@@ -7,37 +7,38 @@ interface CoinTableProps {
 
 const CoinTable: React.FC<CoinTableProps> = ({ data, latestPriceData }) => {
   return (
-    <div className='bg-[#141828] max-w-[300px] p-4 h-[1000px]'>
-      <div className='text-white text-lg font-bold mb-4'>Sổ lệnh</div>
+    <div className='bg-[#141828] pt-4 border-[2px] border-black border-solid w-[280px] h-[642px]'>
+      <h2 className='text-[18px] font-[20px] text-[#d2d6dd] mb-4 px-4'>Sổ lệnh</h2>
       <div>
-        <div className='w-full'>
-          <div className=' text-gray-700 flex justify-between'>
-            <p className=' bg-[#141828] text-[#E5D9CE] flex-1'>Giá, Xu</p>
-            <p className='bg-[#141828] text-[#E5D9CE] flex justify-end flex-1'>Số lượng, Vnse</p>
+        <div className='w-full px-4'>
+          <div className='text-[#77829b] font-[16px] text-[14px] flex w-full mb-4'>
+            <p className='flex-1'>Giá, Xu</p>
+            <p className='flex-1 flex justify-end'>Số lượng, Vnse</p>
           </div>
-          <div className='bg-[#141828] text-gray-600 text-[#E5D9CE]'>
+          <div>
             {data.map((row, index) => (
-              <div key={index} className='text-gray-700 flex justify-between'>
-                <td className='bg-[#141828] text-[#E5D9CE] flex-1 ml-1'>{row.price}</td>
-                <td className='bg-[#141828] text-[#E5D9CE] flex justify-end flex-1 mr-1'>{row.quantity}</td>
+              <div key={index} className='text-[#77829b] font-[16px] text-[14px] flex w-full mb-3'>
+                <p className='flex-1 text-[#c34961]'>{row.price}</p>
+                <p className='flex justify-end flex-1 text-white'>{row.quantity}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
-      <div className='mt-2'>
-        <div className='p-3 justify-center flex text-[#ffffff] border-b-[2px] border-white border-solid border-t-[2px]'>
-          giá gần nhất
+      <div className='mt-2 px-4'>
+        <div className='p-3 justify-center flex items-end text-[#ffffff] border-b-[1px] border-[#2c364f] border-solid border-t-[1px]'>
+          Giá gần nhất
+          <span className='ml-2 text-[20px] text-[#41996e]'>190</span>
         </div>
-        <div className='mt-2'>
+        <div className='mt-4'>
           <div className='w-full bg-white'>
             <div className='bg-gray-200 text-gray-700'></div>
-            <div className='bg-[#141828] text-gray-600 text-[#E5D9CE]'>
+            <div className='bg-[#141828] text-[#E5D9CE]'>
               {latestPriceData.map((row, index) => (
-                <tr key={index} className='text-gray-700 flex justify-between'>
-                  <td className='bg-[#141828] text-[#E5D9CE] flex-1 '>{row.latestPrice}</td>
-                  <td className='bg-[#141828] text-[#E5D9CE] flex justify-end flex-1 mr-1'>{row.totalQuantity}</td>
-                </tr>
+                <div key={index} className='text-[#77829b] font-[16px] text-[14px] flex w-full mb-3'>
+                  <p className='text-[#41996e] flex-1 '>{row.latestPrice}</p>
+                  <p className='flex justify-end flex-1 text-white'>{row.totalQuantity}</p>
+                </div>
               ))}
             </div>
           </div>

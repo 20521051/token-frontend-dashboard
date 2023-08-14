@@ -36,33 +36,25 @@ const TradingMarket: React.FC = () => {
   }, []);
 
   return (
-    <div className='bg-gray-800 p-4'>
-      <h2 className='text-xl font-semibold text-white text-center mb-4'>Thị trường giao dịch</h2>
-      <div className='overflow-x-auto'>
-        <table className='table-auto w-full text-white'>
-          <thead>
-            <tr>
-              <th className='px-4 py-2 text-gray-400 font-semibold'>Giá</th>
-              <th className='px-4 py-2 text-gray-400 font-semibold'>Số Lượng</th>
-              <th className='px-4 py-2 text-gray-400 font-semibold'>Thời Gian</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tradingData.map((item, index) => (
-              <tr key={index}>
-                <td className='px-4 py-2 text-lg font-semibold' style={{ color: '#3DB07C' }}>
-                  {item.price.toFixed(2)}
-                </td>
-                <td className='px-4 py-2 text-lg font-semibold text-white'>
-                  {item.quantity.toFixed(2)}
-                </td>
-                <td className='px-4 py-2 text-lg font-semibold text-white'>
-                  {item.time.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className='bg-[#141828] p-4 border-[2px] border-black border-solid w-[280px] h-[282px]'>
+      <h2 className='text-[18px] font-[20px] text-[#d2d6dd] mb-4'>Thị trường giao dịch</h2>
+      <div>
+        <div className='text-[#77829b] font-[16px] text-[16px] flex w-full mb-4'>
+          <p className='flex-1'>Giá</p>
+          <p className='flex-1 flex justify-center'>Số Lượng</p>
+          <p className='flex-1 flex justify-end'>Thời Gian</p>
+        </div>
+        <div>
+          {tradingData.map((item, index) => (
+            <div key={index} className='text-[#77829b] font-[16px] text-[14px] flex w-full mb-3'>
+              <p className='text-[#3DB07C] flex-1'>{item.price.toFixed(2)}</p>
+              <p className='text-[#d2d6dd] flex-1 flex justify-center'>{item.quantity.toFixed(2)}</p>
+              <p className='flex-1 flex justify-end'>
+                {item.time.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
