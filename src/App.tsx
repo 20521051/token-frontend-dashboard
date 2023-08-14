@@ -15,9 +15,11 @@ function App() {
             <Chart />
             <TaskResponse />
           </div>
-          <CoinTable data={fakeData} latestPriceData={latestPriceData} />
           <div>
-            <Transfer balance={1000} />
+            <div className='flex'>
+              <CoinTable data={fakeData} latestPriceData={latestPriceData} />
+              <Transfer balance={1000} />
+            </div>
             <TradingMarket />
           </div>
         </div>
