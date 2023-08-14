@@ -1,8 +1,7 @@
-import { Chart, Filter, Header, Info, TradingMarket, Transfer } from './components';
+import { Chart, Filter, Header, Info, TradingMarket, Transfer, TaskResponse } from './components';
 import CoinTable from './components/historyCost';
 import { VNSeProvider } from './context/VNSeContext';
 import { fakeData, latestPriceData } from './utils/fakeData';
-
 function App() {
   /* vì chỉ có một trang nên dùng App làm home page */
   return (
@@ -14,6 +13,7 @@ function App() {
             <Info price={172} change={2.38} max={173} min={168} numberOfTransfer={382183} />
             <Filter />
             <Chart />
+            <TaskResponse />
           </div>
           <CoinTable data={fakeData} latestPriceData={latestPriceData} />
           <div>

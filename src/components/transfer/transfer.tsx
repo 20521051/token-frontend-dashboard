@@ -22,7 +22,7 @@ function Transfer({ ...props }: TransferProps) {
     setBalance(balance);
   };
   return (
-    <div className='bg-[#141828] w-[280px] h-[360px] px-[15px] py-[20px] flex flex-col justify-between items-center border-[2px] border-black border-solid'>
+    <div className='bg-[#141828] w-[280px] h-[360px] px-[15px] py-[20px] flex flex-col justify-between items-center border-[1px] border-black border-solid'>
       <div className='bg-[#222940] rounded-[8px] p-[5px] w-[240px] flex justify-between font-[30px] text-[16px]'>
         <button
           className={clsx('w-[110px] h-[35px] rounded-[5px]', {
@@ -53,7 +53,7 @@ function Transfer({ ...props }: TransferProps) {
             <p className='text-[#77829b] mb-1 font-thin'>Số lượng xu {isBuy ? 'sử dụng' : 'bán'}</p>
             <input
               type='text'
-              className='bg-[#1a2033] border-[2px] border-[#142a48] text-[#77829b] text-sm rounded-lg block w-full pl-5 p-2.5'
+              className='bg-[#1a2033] border-[1px] border-[#142a48] text-[#77829b] text-sm rounded-lg block w-full pl-5 p-2.5'
               placeholder='0'
             />
           </div>

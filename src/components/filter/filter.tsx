@@ -43,9 +43,9 @@ function Filter() {
     setIsDefault(false);
   };
   return (
-    <div className='bg-[#141828] p-2 w-[920px] text-[14px] flex justify-between items-center border-[2px] border-black border-solid'>
+    <div className='bg-[#141828] p-2 w-[920px] text-[14px] flex justify-between items-center border-[1px] border-black border-solid'>
       <div className='flex justify-between items-center'>
-        <div className='text-gray-400 border-r-[2px] border-white border-solid px-3 flex justify-between w'>
+        <div className='text-gray-400 border-r-[1px] border-white border-solid px-3 flex justify-between w'>
           <button
             className={clsx('w-[35px] h-[25px] rounded-[5px]', {
               'text-white bg-[#303341] font-[20px]': status === FilterTime['5m'],
