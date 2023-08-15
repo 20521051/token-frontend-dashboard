@@ -41,19 +41,6 @@ const TradingMarket: React.FC = () => {
       }
     };
     fetchData();
-
-    // const apiKey = '11372479-27ed-4573-9afd-2a0df25a8902';
-    // const apiUrl = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest';
-
-    // // Tạo URL với tham số API key
-    // const url = new URL(apiUrl);
-    // url.searchParams.append('CMC_PRO_API_KEY', apiKey);
-    // fetch(url, { mode: 'no-cors' })
-    //   .then((response) => response.json())
-    //   .then((data) => setData(data))
-    //   .catch((error) => {
-    //     console.error('Error fetching data:', error);
-    //   });
   }, []);
   return (
     <div className='bg-[#141828] p-4 border-[1px] border-black border-solid w-[560px] h-[282px]'>
