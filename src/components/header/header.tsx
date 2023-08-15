@@ -47,9 +47,9 @@ function Header() {
                   <div className='p-2 items-center text-[#c9d9e0] flex border-r-[1px] border-gray-400 border-solid'>
                     <img
                       src='https://thumbs.dreamstime.com/z/crypto-currency-bitcoin-golden-symbol-coin-black-lackered-obverse-transparent-background-vector-illustration-use-87787782.jpg?w=768'
-                      className='flex w-5 h-5 '
+                      className='flex w-5 h-5 mr-2'
                     />{' '}
-                    {blcOftoken  && formatNumber(blcOftoken) }
+                    {blcOftoken && formatNumber(blcOftoken)}
                   </div>
                   <div className='p-2 items-center text-[#c9d9e0] flex border-r-[1px] border-gray-400 border-solid '>
                     <img

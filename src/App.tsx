@@ -35,7 +35,7 @@ function App() {
           <div>
             <div className='flex'>
               <CoinTable data={fakeData} latestPriceData={latestPriceData} />
-              <Transfer balance={1000} />
+              <Transfer/>
             </div>
             <TradingMarket />
           </div>

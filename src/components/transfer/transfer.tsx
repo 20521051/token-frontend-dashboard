@@ -4,11 +4,8 @@ import { VNSeContext } from '@/context/VNSeContext';
 import { ethers } from 'ethers';
 import { formatNumber } from '@/utils/shortenAddress';
 
-interface TransferProps {
-  balance: number;
-}
 
-function Transfer({ ...props }: TransferProps) {
+function Transfer() {
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [isBuy, setIsBuy] = useState<boolean>(true);
   const [amount, setAmount] = useState('');
@@ -19,6 +16,7 @@ function Transfer({ ...props }: TransferProps) {
     setAmount(event.target.value);
     console.log(amount);
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleReceiverChange = (event: any) => {
     setReceiver(event.target.value);
     console.log(setReceiver);
