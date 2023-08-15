@@ -2,11 +2,13 @@ import { createContext, ReactNode, useState } from 'react';
 import * as ethers from 'ethers';
 import { ContractAbi, ContractAddr } from '@/utils/constants';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare let window: any;
 
 interface VNSeContextData {
   checkIfWalletIsConnect: () => void;
   connectWallet: () => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   buyTokensFromContract: (amount: ethers.BigNumberish | any) => void;
   currentAccount: string | null;
   balance: string | null;
@@ -65,8 +67,10 @@ export const VNSeProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const buyTokensFromContract = async (amount: ethers.BigNumberish | any) => {
     try {
+      console.log(currentAccount);
       if (!window.ethereum || !currentAccount) {
         console.error('User is not connected');
         return;

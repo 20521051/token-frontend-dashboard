@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { shortenAddress, shortenBalance } from '@/utils/shortenAddress';
 import { VNSeContext } from '@/context/VNSeContext';
 
@@ -9,12 +9,25 @@ function Header() {
     return null;
   }
   const { connectWallet, currentAccount, balance } = context;
-
+  const handleClick = () => {
+    connectWallet();
+    console.log(currentAccount);
+  };
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    console.log(currentAccount);
+  }, [currentAccount]);
   return (
     <div className='border-b-[1px] border-black border-solid'>
       <header className='h-16 p-2 custom-header flex items-center justify-between bg-[#141828]'>
         <div className='ml-5 flex items-center space-x-4'>
-        <h1><img src="https://cdn-1.webcatalog.io/catalog/tiki-exchange/tiki-exchange-icon-filled-256.png?v=1675594321765" alt="" width={140}/></h1>
+          <h1>
+            <img
+              src='https://cdn-1.webcatalog.io/catalog/tiki-exchange/tiki-exchange-icon-filled-256.png?v=1675594321765'
+              alt=''
+              width={140}
+            />
+          </h1>
           <h1 className='text-xl font-bold text-[#E5D9CE]'>VNS</h1>
           <ul className='flex space-x-4'>
             <li>
@@ -60,7 +73,7 @@ function Header() {
                 <div>
                   <button
                     type='button'
-                    onClick={connectWallet}
+                    onClick={handleClick}
                     className='p-2.5 rounded-full bg-[#222940] hover:text-gray-400 text-[#E5D9CE] mr-20'
                   >
                     Đăng nhập

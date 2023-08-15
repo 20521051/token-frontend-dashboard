@@ -70,7 +70,10 @@ const TradingMarket: React.FC = () => {
             <div key={index} className='text-[#77829b] font-[16px] text-[14px] flex w-full mb-3'>
               <p className='text-[#3DB07C] flex-1'>{item.name}</p>
               <p className='text-[#e6aa04] flex-1'>{item.symbol}</p>
-              <p className='flex-1'>{formatNumber(item.quote.USD.price)}</p>
+              <p className='flex-1'>
+                {formatNumber(item.quote.USD.price)}
+                <span className='text-[#e6aa04]'> $</span>
+              </p>
               <p className='flex-1'>{moment(item.quote.USD.last_updated).format('L')}</p>
             </div>
           ))}

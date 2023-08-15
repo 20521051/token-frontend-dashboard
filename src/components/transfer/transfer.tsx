@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { VNSeContext } from '@/context/VNSeContext';
 import { ethers } from 'ethers';
 
@@ -8,11 +8,12 @@ interface TransferProps {
 }
 
 function Transfer({ ...props }: TransferProps) {
-  const [isLogin] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
   const [isBuy, setIsBuy] = useState<boolean>(true);
   const [balance, setBalance] = useState<number>(props.balance || 10000);
-
   const [amount, setAmount] = useState('');
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleAmountChange = (event: any) => {
     setAmount(event.target.value);
     console.log(amount);
@@ -23,9 +24,13 @@ function Transfer({ ...props }: TransferProps) {
     console.log(context);
     return null;
   }
+  const { currentAccount } = context;
+
   const handleBuy = () => {
     const amountToBuy = ethers.parseUnits(amount, 18);
     context.buyTokensFromContract(amountToBuy);
+    console.log('account', currentAccount);
+    console.log(amount);
   };
 
   const handleChooseBuy = () => {
@@ -34,12 +39,14 @@ function Transfer({ ...props }: TransferProps) {
   const handleChooseSell = () => {
     setIsBuy(false);
   };
-  // const handleClickBuy = () => {
-  //   setIsBuy(true);
-  // };
   const handleClickSell = () => {
     setBalance(balance);
   };
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    if (currentAccount) setIsLogin(true);
+  }, [currentAccount]);
   return (
     <div className='bg-[#141828] w-[280px] h-[360px] px-[15px] py-[20px] flex flex-col justify-between items-center border-[1px] border-black border-solid'>
       <div className='bg-[#222940] rounded-[8px] p-[5px] w-[240px] flex justify-between font-[30px] text-[16px]'>
