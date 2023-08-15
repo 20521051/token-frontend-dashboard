@@ -2,22 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import dataJson from '@/api/data.json';
 import moment from 'moment';
+import { formatNumber } from '@/utils/shortenAddress';
 
-function formatNumber(number: number) {
-  const numberStr = number.toString();
-  const dotIndex = numberStr.indexOf('.');
-  if (dotIndex === -1) {
-    return numberStr;
-  }
 
-  return (
-    numberStr.slice(0, dotIndex) +
-    ',' +
-    numberStr.slice(dotIndex + 1, dotIndex + 3) +
-    '...' +
-    numberStr.slice(numberStr.length - 2)
-  );
-}
 const TradingMarket: React.FC = () => {
   const [data, setData] = useState<IData[]>(dataJson.data as IData[]);
 
@@ -58,7 +45,7 @@ const TradingMarket: React.FC = () => {
               <p className='text-[#3DB07C] flex-1'>{item.name}</p>
               <p className='text-[#e6aa04] flex-1'>{item.symbol}</p>
               <p className='flex-1'>
-                {formatNumber(item.quote.USD.price)}
+                {formatNumber(item.quote.USD.price.toString())}
                 <span className='text-[#e6aa04]'> $</span>
               </p>
               <p className='flex-1'>{moment(item.quote.USD.last_updated).format('L')}</p>

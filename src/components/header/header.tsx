@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { shortenAddress, shortenBalance } from '@/utils/shortenAddress';
 import { VNSeContext } from '@/context/VNSeContext';
+import { formatNumber } from '@/utils/shortenAddress';
 
 function Header() {
   const context = useContext(VNSeContext);
@@ -8,27 +9,23 @@ function Header() {
     console.log(context);
     return null;
   }
-  const { connectWallet, currentAccount, balance } = context;
+  const { connectWallet, currentAccount, balance, blcOftoken } = context;
+  console.log('>>>>>>>>', blcOftoken);
   const handleClick = () => {
     connectWallet();
-    console.log(currentAccount);
+    // console.log(currentAccount);
   };
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    console.log(currentAccount);
+    // console.log(currentAccount);
   }, [currentAccount]);
   return (
     <div className='border-b-[1px] border-black border-solid'>
       <header className='h-16 p-2 custom-header flex items-center justify-between bg-[#141828]'>
         <div className='ml-5 flex items-center space-x-4'>
           <h1>
-            <img
-              src='https://cdn-1.webcatalog.io/catalog/tiki-exchange/tiki-exchange-icon-filled-256.png?v=1675594321765'
-              alt=''
-              width={140}
-            />
+            <img src='src/assets/images/vns_logo.png' alt='logo_VNS' width={140} />
           </h1>
-          <h1 className='text-xl font-bold text-[#E5D9CE]'>VNS</h1>
           <ul className='flex space-x-4'>
             <li>
               <a href='#' className='items-center hover:text-[#15275A] text-[#E5D9CE]'>
@@ -52,7 +49,7 @@ function Header() {
                       src='https://thumbs.dreamstime.com/z/crypto-currency-bitcoin-golden-symbol-coin-black-lackered-obverse-transparent-background-vector-illustration-use-87787782.jpg?w=768'
                       className='flex w-5 h-5 '
                     />{' '}
-                    100
+                    {blcOftoken  && formatNumber(blcOftoken) }
                   </div>
                   <div className='p-2 items-center text-[#c9d9e0] flex border-r-[1px] border-gray-400 border-solid '>
                     <img
