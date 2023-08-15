@@ -1,5 +1,5 @@
 import abi from './VNSeToken.json';
 
-export const ContractAbi = abi.abi;
+export const ContractAbi = abi;
 
-export const ContractAddr = '0x4c4648d3db6a7ce4f75bb541b130ddc4e8770050';
+export const ContractAddr = '0xb53B60FEE383Bb1CbCeC15a2d784bE39e314427d';
