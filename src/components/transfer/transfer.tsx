@@ -1,5 +1,7 @@
 import { clsx } from 'clsx';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { VNSeContext } from '@/context/VNSeContext';
+import { ethers } from 'ethers';
 
 interface TransferProps {
   balance: number;
@@ -9,15 +11,32 @@ function Transfer({ ...props }: TransferProps) {
   const [isLogin] = useState<boolean>(false);
   const [isBuy, setIsBuy] = useState<boolean>(true);
   const [balance, setBalance] = useState<number>(props.balance || 10000);
+
+  const [amount, setAmount] = useState('');
+  const handleAmountChange = (event: any) => {
+    setAmount(event.target.value);
+    console.log(amount);
+  };
+
+  const context = useContext(VNSeContext);
+  if (!context) {
+    console.log(context);
+    return null;
+  }
+  const handleBuy = () => {
+    const amountToBuy = ethers.parseUnits(amount, 18);
+    context.buyTokensFromContract(amountToBuy);
+  };
+
   const handleChooseBuy = () => {
     setIsBuy(true);
   };
   const handleChooseSell = () => {
     setIsBuy(false);
   };
-  const handleClickBuy = () => {
-    setIsBuy(true);
-  };
+  // const handleClickBuy = () => {
+  //   setIsBuy(true);
+  // };
   const handleClickSell = () => {
     setBalance(balance);
   };
@@ -53,6 +72,8 @@ function Transfer({ ...props }: TransferProps) {
             <p className='text-[#77829b] mb-1 font-thin'>Số lượng xu {isBuy ? 'sử dụng' : 'bán'}</p>
             <input
               type='text'
+              value={amount}
+              onChange={handleAmountChange}
               className='bg-[#1a2033] border-[1px] border-[#142a48] text-[#77829b] text-sm rounded-lg block w-full pl-5 p-2.5'
               placeholder='0'
             />
@@ -68,7 +89,7 @@ function Transfer({ ...props }: TransferProps) {
         {isBuy ? (
           <button
             className='w-[240px] h-[35px] rounded-[5px] mt-2 text-[#449f73] bg-[#283e49]'
-            onClick={handleClickBuy}
+            onClick={handleBuy}
             disabled={!isLogin}
           >
             Mua
