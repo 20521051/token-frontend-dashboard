@@ -67,21 +67,35 @@ function Transfer({ ...props }: TransferProps) {
           Bán
         </button>
       </div>
-      <div className='h-full mt-3 flex flex-col justify-between'>
+      <div className='h-full mt-1 flex flex-col justify-between'>
         <div className='text-white flex flex-col justify-between h-full py-5 text-[14px]'>
           <div className='flex justify-between'>
             <p className='text-[#77829b] font-thin'>{isBuy ? 'Giá mua VNSe' : 'Giá bán VNSe'}</p>
             <p>Thị trường</p>
           </div>
           <div>
-            <p className='text-[#77829b] mb-1 font-thin'>Số lượng xu {isBuy ? 'sử dụng' : 'bán'}</p>
-            <input
-              type='text'
-              value={amount}
-              onChange={handleAmountChange}
-              className='bg-[#1a2033] border-[1px] border-[#142a48] text-[#77829b] text-sm rounded-lg block w-full pl-5 p-2.5'
-              placeholder='0'
-            />
+            <div>
+              <p className='text-[#77829b] mb-1 font-thin'>Số lượng xu {isBuy ? 'sử dụng' : 'bán'}</p>
+              <input
+                type='text'
+                value={amount}
+                onChange={handleAmountChange}
+                className='bg-[#1a2033] border-[1px] border-[#142a48] text-[#77829b] text-sm rounded-lg block w-full pl-5 p-2.5'
+                placeholder='0'
+              />
+            </div>
+            {!isBuy && (
+              <div>
+                <p className='text-[#77829b] mt-2 mb-1 font-thin'>Địa chỉ</p>
+                <input
+                  type='text'
+                  value={amount}
+                  onChange={handleAmountChange}
+                  className='bg-[#1a2033] border-[1px] border-[#142a48] text-[#77829b] text-sm rounded-lg block w-full pl-5 p-2.5'
+                  placeholder='0x2eCbac4303fB1D24998B146F8371e73AA53f5BAa'
+                />
+              </div>
+            )}
           </div>
           <div className='flex justify-between'>
             <p className='text-[#77829b] font-thin'>Khả dụng</p>

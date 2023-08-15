@@ -8,7 +8,9 @@ declare let window: any;
 interface VNSeContextData {
   checkIfWalletIsConnect: () => void;
   connectWallet: () => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   buyTokens: (amount: ethers.BigNumberish | any) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   transferTokens: (recipient: string, amount: ethers.BigNumberish | any) => void;
   currentAccount: string | null;
   balance: string | null;
@@ -73,6 +75,7 @@ export const VNSeProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const buyTokens = async (amount: ethers.BigNumberish | any) => {
     try {
       console.log(currentAccount);
@@ -88,6 +91,7 @@ export const VNSeProvider = ({ children }: { children: ReactNode }) => {
       console.error('Buy tokens failed:', error);
     }
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const transferTokens = async (recipient: string, amount: ethers.BigNumberish | any) => {
     try {
       if (!window.ethereum || !currentAccount) {
