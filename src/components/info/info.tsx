@@ -15,6 +15,7 @@ function Info({ ...props }: InfoProps) {
   const [min] = useState<number>(props.min || 100);
   const [numberOfTransfer] = useState<number>(props.numberOfTransfer || 100);
   const [isHigh] = useState<boolean>(props.change > 0);
+
   return (
     <div className='bg-[#141828] p-2 text-white flex w-[920px] border-[1px] border-black border-solid'>
       <div className='flex items-center w-[110px] border-r-[1px] border-white border-solid'>

@@ -22,13 +22,8 @@ function Header() {
       <header className='h-16 p-2 custom-header flex items-center justify-between bg-[#141828]'>
         <div className='ml-5 flex items-center space-x-4'>
           <h1>
-            <img
-              src='https://cdn-1.webcatalog.io/catalog/tiki-exchange/tiki-exchange-icon-filled-256.png?v=1675594321765'
-              alt=''
-              width={140}
-            />
+            <img src='src/assets/images/vns_logo.png' alt='logo_VNS' width={140} />
           </h1>
-          <h1 className='text-xl font-bold text-[#E5D9CE]'>VNS</h1>
           <ul className='flex space-x-4'>
             <li>
               <a href='#' className='items-center hover:text-[#15275A] text-[#E5D9CE]'>
