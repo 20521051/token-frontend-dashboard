@@ -24,8 +24,8 @@ function Transfer({ ...props }: TransferProps) {
     return null;
   }
   const handleBuy = () => {
-    const amountToBuy = ethers.parseUnits(amount, 18);
-    context.buyTokensFromContract(amountToBuy);
+    const amountToBuy = ethers.utils.parseUnits(amount, 18);
+    context.buyTokens(amountToBuy);
   };
 
   const handleChooseBuy = () => {
