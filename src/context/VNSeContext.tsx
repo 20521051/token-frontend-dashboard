@@ -14,6 +14,8 @@ interface VNSeContextData {
   transferTokens: (recipient: string, amount: ethers.BigNumberish | any) => void;
   currentAccount: string | null;
   balance: string | null;
+  blcOftoken: string | null;
+  price: string | null;
 }
 
 export const VNSeContext = createContext<VNSeContextData | undefined>(undefined);
@@ -25,14 +27,12 @@ const createEthContract = () => {
   return transactionsContract;
 };
 
-//   const handleChange = (e: { target: { value: any; }; }, name: any) => {
-//     setformData((prevState: any) => ({ ...prevState, [name]: e.target.value }));
-//   };
-
 export const VNSeProvider = ({ children }: { children: ReactNode }) => {
   const provider = new ethers.ethers.providers.Web3Provider(window.ethereum);
   const [currentAccount, setCurrentAccount] = useState<string | null>(null);
   const [balance, setBalance] = useState<string | null>(null);
+  const [blcOftoken, setBlcOftoken] = useState<string | null>(null);
+  const [price, setPrice] = useState<string | null>(null);
 
   const checkIfWalletIsConnect = async () => {
     try {
@@ -46,6 +46,11 @@ export const VNSeProvider = ({ children }: { children: ReactNode }) => {
         const balanceEther = ethers.ethers.utils.formatEther(balanceWei);
 
         setBalance(balanceEther);
+
+        const contract = createEthContract();
+        const txs = await contract.getTokenPrice();
+        const balancetoken = ethers.utils.formatEther(txs);
+        setPrice(balancetoken);
       } else {
         console.log('No accounts found');
       }
@@ -65,10 +70,19 @@ export const VNSeProvider = ({ children }: { children: ReactNode }) => {
         resolve();
       });
       const balanceWei = await provider.getBalance(accounts[0]);
-      const balanceEther = ethers.ethers.utils.formatEther(balanceWei);
+      const balanceEther = ethers.utils.formatEther(balanceWei);
       setBalance(balanceEther);
-      console.log('####### :', currentAccount);
-      console.log('>>>>>>', accounts[0]);
+
+      const contract = createEthContract();
+      const myNumber = await contract.getMyNumber();
+      const tx = ethers.utils.formatEther(myNumber);
+      setBlcOftoken(tx);
+      console.log('####', blcOftoken);
+      /////////
+      const txs = await contract.getTokenPrice();
+      const balancetoken = ethers.utils.formatEther(txs);
+      setPrice(balancetoken);
+      console.log('ávdágdgjáđâsđasađâs', price);
     } catch (error) {
       console.log(error);
       throw new Error('No ethereum object');
@@ -106,6 +120,7 @@ export const VNSeProvider = ({ children }: { children: ReactNode }) => {
       console.error('Transfer tokens failed:', error);
     }
   };
+
   useEffect(() => {}, [currentAccount, balance]);
 
   const contextValue: VNSeContextData = {
@@ -113,8 +128,11 @@ export const VNSeProvider = ({ children }: { children: ReactNode }) => {
     connectWallet,
     buyTokens,
     transferTokens,
+
     currentAccount,
     balance,
+    blcOftoken,
+    price,
   };
 
   return <VNSeContext.Provider value={contextValue}>{children}</VNSeContext.Provider>;

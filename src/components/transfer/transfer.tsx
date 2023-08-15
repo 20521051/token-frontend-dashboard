@@ -2,6 +2,7 @@ import { clsx } from 'clsx';
 import { useContext, useEffect, useState } from 'react';
 import { VNSeContext } from '@/context/VNSeContext';
 import { ethers } from 'ethers';
+import { formatNumber } from '@/utils/shortenAddress';
 
 interface TransferProps {
   balance: number;
@@ -10,25 +11,34 @@ interface TransferProps {
 function Transfer({ ...props }: TransferProps) {
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [isBuy, setIsBuy] = useState<boolean>(true);
-  const [balance, setBalance] = useState<number>(props.balance || 10000);
   const [amount, setAmount] = useState('');
+  const [receiver, setReceiver] = useState('');
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleAmountChange = (event: any) => {
     setAmount(event.target.value);
     console.log(amount);
   };
-
+  const handleReceiverChange = (event: any) => {
+    setReceiver(event.target.value);
+    console.log(setReceiver);
+  };
   const context = useContext(VNSeContext);
   if (!context) {
     console.log(context);
     return null;
   }
-  const { currentAccount } = context;
+  const { currentAccount, price, blcOftoken } = context;
+  console.log('AAAAAA', price);
 
   const handleBuy = () => {
     const amountToBuy = ethers.utils.parseUnits(amount, 18);
     context.buyTokens(amountToBuy);
+  };
+
+  const handleSellTokens = () => {
+    const amountToSell = ethers.utils.parseUnits(amount);
+    context.transferTokens(receiver, amountToSell);
   };
 
   const handleChooseBuy = () => {
@@ -37,9 +47,9 @@ function Transfer({ ...props }: TransferProps) {
   const handleChooseSell = () => {
     setIsBuy(false);
   };
-  const handleClickSell = () => {
-    setBalance(balance);
-  };
+  // const handleClickSell = () => {
+  //   setBalance(balance);
+  // };
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
@@ -71,7 +81,7 @@ function Transfer({ ...props }: TransferProps) {
         <div className='text-white flex flex-col justify-between h-full py-5 text-[14px]'>
           <div className='flex justify-between'>
             <p className='text-[#77829b] font-thin'>{isBuy ? 'Giá mua VNSe' : 'Giá bán VNSe'}</p>
-            <p>Thị trường</p>
+            <p>{price} ETH</p>
           </div>
           <div>
             <div>
@@ -89,10 +99,10 @@ function Transfer({ ...props }: TransferProps) {
                 <p className='text-[#77829b] mt-2 mb-1 font-thin'>Địa chỉ</p>
                 <input
                   type='text'
-                  value={amount}
-                  onChange={handleAmountChange}
+                  value={receiver}
+                  onChange={handleReceiverChange}
                   className='bg-[#1a2033] border-[1px] border-[#142a48] text-[#77829b] text-sm rounded-lg block w-full pl-5 p-2.5'
-                  placeholder='0x2eCbac4303fB1D24998B146F8371e73AA53f5BAa'
+                  placeholder='0x00000'
                 />
               </div>
             )}
@@ -100,7 +110,7 @@ function Transfer({ ...props }: TransferProps) {
           <div className='flex justify-between'>
             <p className='text-[#77829b] font-thin'>Khả dụng</p>
             <p>
-              {balance} Xu <span className='text-[#0b74e5]'>⊕</span>
+              {blcOftoken && formatNumber(blcOftoken)} Xu <span className='text-[#0b74e5]'>⊕</span>
             </p>
           </div>
           <p className='text-[#77829b] font-thin'>Phí giao dịch ©</p>
@@ -116,7 +126,7 @@ function Transfer({ ...props }: TransferProps) {
         ) : (
           <button
             className='w-[240px] h-[35px] rounded-[5px] mt-2 text-[#d44e67] bg-[#3d2f45]'
-            onClick={handleClickSell}
+            onClick={handleSellTokens}
             disabled={!isLogin}
           >
             Bán

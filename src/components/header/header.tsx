@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { shortenAddress, shortenBalance } from '@/utils/shortenAddress';
 import { VNSeContext } from '@/context/VNSeContext';
+import { formatNumber } from '@/utils/shortenAddress';
 
 function Header() {
   const context = useContext(VNSeContext);
@@ -8,14 +9,15 @@ function Header() {
     console.log(context);
     return null;
   }
-  const { connectWallet, currentAccount, balance } = context;
+  const { connectWallet, currentAccount, balance, blcOftoken } = context;
+  console.log('>>>>>>>>', blcOftoken);
   const handleClick = () => {
     connectWallet();
-    console.log(currentAccount);
+    // console.log(currentAccount);
   };
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    console.log(currentAccount);
+    // console.log(currentAccount);
   }, [currentAccount]);
   return (
     <div className='border-b-[1px] border-black border-solid'>
@@ -52,7 +54,7 @@ function Header() {
                       src='https://thumbs.dreamstime.com/z/crypto-currency-bitcoin-golden-symbol-coin-black-lackered-obverse-transparent-background-vector-illustration-use-87787782.jpg?w=768'
                       className='flex w-5 h-5 '
                     />{' '}
-                    100
+                    {blcOftoken  && formatNumber(blcOftoken) }
                   </div>
                   <div className='p-2 items-center text-[#c9d9e0] flex border-r-[1px] border-gray-400 border-solid '>
                     <img
