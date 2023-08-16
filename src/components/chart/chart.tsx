@@ -2,34 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { ComposedChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const CombinedChartComponent: React.FC = () => {
-  const initialPrice = 0.002; // Initial price in dollars
-  const [data, setData] = useState<{
-    name: Date;
-    marketPrice: number;
-    tokenVNSePrice: number;
-    tradingValue: number;
-  }[]>([]);
+  const initialPrice = 0.004; // Initial price in dollars
+  const data = [
+    { name: 'Market Price', price: initialPrice },
+    { name: 'Token VNSe Price', price: initialPrice - 0.001 },
+    { name: 'Trading Value', price: initialPrice - 0.002 },
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       const currentTime = new Date();
-      const newMarketPrice = initialPrice + Math.random() * 0.01; // Adjust the range to your preference
-      const newTokenVNSePrice = initialPrice + Math.random() * 0.001; // Adjust the range to your preference
-      const newTradingValue = Math.random() * (175.00 - 167.00) + 167.00;
+      const newMarketPrice = initialPrice - (Math.random() * 0.001); // Adjust the range to your preference
+      const newTokenVNSePrice = initialPrice - (Math.random() * 0.001); // Adjust the range to your preference
+      const newTradingValue = initialPrice - (Math.random() * 0.001); // Adjust the range to your preference
       const newData = [
-        ...data.slice(Math.max(data.length - 8, 0)),
-        {
-          name: currentTime,
-          marketPrice: newMarketPrice,
-          tokenVNSePrice: newTokenVNSePrice,
-          tradingValue: newTradingValue,
-        },
+        { name: 'Market Price', price: newMarketPrice },
+        { name: 'Token VNSe Price', price: newTokenVNSePrice },
+        { name: 'Trading Value', price: newTradingValue },
       ];
       setData(newData);
-    },5000);
+    }, 3600000); // Update every hour (1 hour = 3600000 milliseconds)
 
     return () => clearInterval(interval);
-  }, [data]);
+  }, []);
 
   return (
     <div className='w-[920px] p-4 h-[330px] bg-[#141828] border-[1px] border-black border-solid'>
@@ -52,7 +47,7 @@ const CombinedChartComponent: React.FC = () => {
             />
             <Area
               type='monotone'
-              dataKey='marketPrice'
+              dataKey='price'
               stroke='#1890ff'
               fill='#1890ff'
               fillOpacity={0.3}
