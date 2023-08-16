@@ -1,1 +1,1 @@
-export { default as TradingMarket } from './TradingMarket';
+export { default as TradingMarket } from './tradingMarket';

@@ -3,15 +3,14 @@ import { ComposedChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveCo
 
 const CombinedChartComponent: React.FC = () => {
   const initialPrice = 0.004; // Initial price in dollars
-  const data = [
+  const [data, setData] = useState([
     { name: 'Market Price', price: initialPrice },
     { name: 'Token VNSe Price', price: initialPrice - 0.001 },
     { name: 'Trading Value', price: initialPrice - 0.002 },
-  ];
+  ]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const currentTime = new Date();
       const newMarketPrice = initialPrice - (Math.random() * 0.001); // Adjust the range to your preference
       const newTokenVNSePrice = initialPrice - (Math.random() * 0.001); // Adjust the range to your preference
       const newTradingValue = initialPrice - (Math.random() * 0.001); // Adjust the range to your preference
@@ -27,7 +26,7 @@ const CombinedChartComponent: React.FC = () => {
   }, []);
 
   return (
-    <div className='w-[100%] p-4 h-[330px] bg-[#141828] border-[1px] border-black border-solid'>
+    <div className='w-[920px] p-4 h-[330px] bg-[#141828] border-[1px] border-black border-solid'>
       <h2 className='text-lg font-semibold mb-4 text-white'>Bitcoin Price Chart</h2>
 
       <div className='w-full h-56'>

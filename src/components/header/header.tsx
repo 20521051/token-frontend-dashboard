@@ -24,7 +24,7 @@ function Header() {
       <header className='h-16 p-2 custom-header flex items-center justify-between bg-[#141828]'>
         <div className='ml-5 flex items-center space-x-4'>
           <h1>
-            <img src='src/assets/images/vns_logo.png' alt='logo_VNS' width={140} />
+            <img src='https://demo.vietnamstartup.io/static/media/Logo_VNS.6e0befe7b0a463a9ef51.png' alt='logo_VNS' width={140} />
           </h1>
           <ul className='flex space-x-4'>
             <li>
