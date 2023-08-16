@@ -28,7 +28,7 @@ const CombinedChartComponent: React.FC = () => {
   }, [data]);
 
   return (
-    <div className='w-[920px] p-4 h-[330px] bg-[#141828] border-[1px] border-black border-solid'>
+    <div className='w-[100%] p-4 h-[330px] bg-[#141828] border-[1px] border-black border-solid'>
       <h2 className='text-lg font-semibold mb-4 text-white'>Bitcoin Price Chart</h2>
 
       <div className='w-full h-56'>

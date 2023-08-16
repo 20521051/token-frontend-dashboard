@@ -7,7 +7,7 @@ interface CoinTableProps {
 
 const CoinTable: React.FC<CoinTableProps> = ({ data, latestPriceData }) => {
   return (
-    <div className='bg-[#141828] pt-4 border-[1px] border-black border-solid w-[280px] h-[360px]'>
+    <div className='bg-[#141828] pt-4 border-[1px] border-black border-solid w-[50%] h-[360px]'>
       <h2 className='text-[16px] font-[20px] text-[#d2d6dd] mb-4 px-4'>Sổ lệnh</h2>
       <div>
         <div className='w-full px-4'>

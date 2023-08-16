@@ -30,7 +30,7 @@ const TradingMarket: React.FC = () => {
     fetchData();
   }, []);
   return (
-    <div className='bg-[#141828] p-4 border-[1px] border-black border-solid w-[560px] h-[282px]'>
+    <div className='bg-[#141828] p-4 border-[1px] border-black border-solid w-[100%] h-[282px]'>
       <h2 className='text-[18px] font-[20px] text-[#d2d6dd] mb-4'>Thị trường giao dịch</h2>
       <div>
         <div className='text-[#77829b] font-[16px] text-[16px] flex w-full mb-4'>

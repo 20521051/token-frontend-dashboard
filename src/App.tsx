@@ -26,13 +26,13 @@ function App() {
       <div className='bg-[#141828]'>
         <Header />
         <div className='flex'>
-          <div>
+          <div className='w-[64%]'>
             <Info price={data.price} change={data.change} max={data.max} min={data.min} numberOfTransfer={data.numberOfTransfer} />
             <Filter />
             <Chart />
             <TaskResponse />
           </div>
-          <div>
+          <div className='w-[36%]'>
             <div className='flex'>
               <CoinTable data={fakeData} latestPriceData={latestPriceData} />
               <Transfer/>
