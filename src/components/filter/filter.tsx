@@ -43,7 +43,7 @@ function Filter() {
     setIsDefault(false);
   };
   return (
-    <div className='bg-[#141828] p-2 w-[920px] text-[14px] flex justify-between items-center border-[1px] border-black border-solid'>
+    <div className='bg-[#141828] p-2 w-[100%] text-[14px] flex justify-between items-center border-[1px] border-black border-solid'>
       <div className='flex justify-between items-center'>
         <div className='text-gray-400 border-r-[1px] border-white border-solid px-3 flex justify-between w'>
           <button
