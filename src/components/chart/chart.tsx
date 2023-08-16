@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ComposedChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const CombinedChartComponent: React.FC = () => {
+  const initialPrice = 0.002; // Initial price in dollars
   const [data, setData] = useState<{
     name: Date;
     marketPrice: number;
@@ -12,17 +13,20 @@ const CombinedChartComponent: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       const currentTime = new Date();
+      const newMarketPrice = initialPrice + Math.random() * 0.01; // Adjust the range to your preference
+      const newTokenVNSePrice = initialPrice + Math.random() * 0.001; // Adjust the range to your preference
+      const newTradingValue = Math.random() * (175.00 - 167.00) + 167.00;
       const newData = [
         ...data.slice(Math.max(data.length - 8, 0)),
         {
           name: currentTime,
-          marketPrice: Math.random() * (10.000 - 1.000) + 1.000,
-          tokenVNSePrice: Math.random() * (10.0 - 8.0) + 8.0,
-          tradingValue: Math.random() * (175.00 - 167.00) + 167.00,
+          marketPrice: newMarketPrice,
+          tokenVNSePrice: newTokenVNSePrice,
+          tradingValue: newTradingValue,
         },
       ];
       setData(newData);
-    }, 1000);
+    },5000);
 
     return () => clearInterval(interval);
   }, [data]);
@@ -39,7 +43,7 @@ const CombinedChartComponent: React.FC = () => {
             <YAxis
               yAxisId='left'
               tick={{ fontSize: 12, fill: '#b0bec5' }}
-              tickFormatter={(value) => `$${value.toFixed(2)}`}
+              tickFormatter={(value) => `$${value.toFixed(4)}`} // Format to show more decimal places
             />
             <Tooltip
               contentStyle={{ background: '#2b3945', border: '1px solid #394b59' }}
