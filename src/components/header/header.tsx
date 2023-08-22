@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import { shortenAddress, shortenBalance } from '@/utils/shortenAddress';
 import { VNSeContext } from '@/context/VNSeContext';
 import { formatNumber } from '@/utils/shortenAddress';
+import Tokenlogo  from '@/assets/images/VNSToken.png';
 
 function Header() {
   const context = useContext(VNSeContext);
@@ -44,10 +45,11 @@ function Header() {
             <div>
               {currentAccount ? (
                 <div className='flex'>
-                  <div className='p-2 items-center text-[#c9d9e0] flex border-r-[1px] border-gray-400 border-solid'>
-                    <img
-                      src='https://thumbs.dreamstime.com/z/crypto-currency-bitcoin-golden-symbol-coin-black-lackered-obverse-transparent-background-vector-illustration-use-87787782.jpg?w=768'
-                      className='flex w-5 h-5 mr-2'
+                 <div className='p-2 items-center text-[#c9d9e0] flex border-r-[1px] border-gray-400 border-solid'>
+                <img
+                src={Tokenlogo}
+                alt='Token Logo'
+                 className='flex w-10 h-10 mr-2'
                     />{' '}
                     {blcOftoken && formatNumber(blcOftoken)}
                   </div>
