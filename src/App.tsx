@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Chart, Filter, Header, Info, TradingMarket, Transfer, TaskResponse } from './components';
 import CoinTable from './components/historyCost';
 import { VNSeProvider } from './context/VNSeContext';
 import { fakeData, latestPriceData } from './utils/fakeData';
 import coin from '@/api/bitcoin.json';
+import AstraClonePage from './pages/AstraClone';
 interface InfoProps {
   price: number;
   change: number;
@@ -23,24 +25,42 @@ function App() {
   useEffect(() => {}, []);
   return (
     <VNSeProvider>
-      <div className='bg-[#141828]'>
-        <Header />
-        <div className='flex'>
-          <div>
-            <Info price={data.price} change={data.change} max={data.max} min={data.min} numberOfTransfer={data.numberOfTransfer} />
-            <Filter />
-            <Chart />
-            <TaskResponse />
-          </div>
-          <div>
-            <div className='flex'>
-              <CoinTable data={fakeData} latestPriceData={latestPriceData} />
-              <Transfer/>
-            </div>
-            <TradingMarket />
-          </div>
-        </div>
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <>
+                <div className='bg-[#141828]'>
+                  <Header />
+                  <div className='flex'>
+                    <div>
+                      <Info
+                        price={data.price}
+                        change={data.change}
+                        max={data.max}
+                        min={data.min}
+                        numberOfTransfer={data.numberOfTransfer}
+                      />
+                      <Filter />
+                      <Chart />
+                      <TaskResponse />
+                    </div>
+                    <div>
+                      <div className='flex'>
+                        <CoinTable data={fakeData} latestPriceData={latestPriceData} />
+                        <Transfer />
+                      </div>
+                      <TradingMarket />
+                    </div>
+                  </div>
+                </div>
+              </>
+            }
+          />
+          <Route path='/vnse' element={<AstraClonePage />} />
+        </Routes>
+      </BrowserRouter>
     </VNSeProvider>
   );
 }
